@@ -1,8 +1,5 @@
 package dxc.com.jira.soft.dashboard.dao.employee;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-
 public class ParamSearchEmployee {
 	
 	private String dateFrom; 
@@ -54,11 +51,5 @@ public class ParamSearchEmployee {
 	public void setEmployeeName(String employeeName) {
 		this.employeeName = employeeName;
 	}	
-	
-	 // reflection toString from apache commons
-    @Override
-    public String toString() {
-        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-    }
 	
 }
