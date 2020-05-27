@@ -7,11 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+@Entity(name="worklog")
 @Table(name="WorkLog")
-@Entity
 public class WorkLog {
 
 	@Id
@@ -19,16 +18,12 @@ public class WorkLog {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long worklogId;
 	
-	@OneToOne
-	@JoinColumn(name="EmployeeID")
-	private Employee employee;
-	
 	@ManyToOne
 	@JoinColumn(name="IssueID")
 	private Issue issue;
 	
 	@Column(name="Time")
-	private String time;
+	private Float time;
 	
 	@Column(name="Date")
 	private String date;
@@ -37,9 +32,8 @@ public class WorkLog {
 		super();
 	}
 
-	public WorkLog(Employee employee, Issue issue, String time, String date) {
+	public WorkLog(Issue issue, Float time, String date) {
 		super();
-		this.employee = employee;
 		this.issue = issue;
 		this.time = time;
 		this.date = date;
@@ -53,14 +47,6 @@ public class WorkLog {
 		this.worklogId = worklogId;
 	}
 
-	public Employee getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-
 	public Issue getIssue() {
 		return issue;
 	}
@@ -69,11 +55,11 @@ public class WorkLog {
 		this.issue = issue;
 	}
 
-	public String getTime() {
+	public Float getTime() {
 		return time;
 	}
 
-	public void setTime(String time) {
+	public void setTime(Float time) {
 		this.time = time;
 	}
 

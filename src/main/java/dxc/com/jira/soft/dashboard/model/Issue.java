@@ -7,9 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Entity
+@Entity(name="issue")
 @Table(name="Issue")
 public class Issue {
 	
@@ -34,16 +35,23 @@ public class Issue {
 	@Column(name="Priority")
 	private String priority;
 	
+	@OneToOne
+	@JoinColumn(name="EmployeeID")
+	private Employee employee;
+	
 	public Issue() {
 	}
 
-	public Issue(String issueName, Project project, String status, String description, String priority) {
+	public Issue(Long issueId, String issueName, Project project, String status, String description, String priority,
+			Employee employee) {
 		super();
+		this.issueId = issueId;
 		this.issueName = issueName;
 		this.project = project;
 		this.status = status;
 		this.description = description;
 		this.priority = priority;
+		this.employee = employee;
 	}
 
 	public Long getIssueId() {
@@ -60,14 +68,6 @@ public class Issue {
 
 	public void setIssueName(String issueName) {
 		this.issueName = issueName;
-	}
-
-	public Project getProjectId() {
-		return project;
-	}
-
-	public void setProjectId(Project projectId) {
-		this.project = projectId;
 	}
 
 	public String getStatus() {
@@ -93,7 +93,21 @@ public class Issue {
 	public void setPriority(String priority) {
 		this.priority = priority;
 	}
-	
-	
+
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
 	
 }

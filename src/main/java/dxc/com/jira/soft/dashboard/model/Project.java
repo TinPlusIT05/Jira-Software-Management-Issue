@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-@Entity
+@Entity(name="project")
 @Table(name="Project")
 public class Project {
 	
@@ -37,6 +37,14 @@ public class Project {
 		this.description = description;
 	}
 	
+	public Project(long projectId, String projectName, String description, List<Employee> employees) {
+		super();
+		this.projectId = projectId;
+		this.projectName = projectName;
+		this.description = description;
+		this.employees = employees;
+	}
+
 	public long getProjectId() {
 		return projectId;
 	}
@@ -61,6 +69,24 @@ public class Project {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	
+
+	public List<Employee> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
+	}
+
+	@Override
+	public String toString() {
+		return "Project [projectId=" + projectId + ", projectName=" + projectName + ", description=" + description
+				+ ", employees=" + employees + "]";
+	}
+	
+	
 	
 	
 	
