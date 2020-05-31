@@ -13,12 +13,12 @@ import javax.persistence.Table;
 @Entity(name="issue")
 @Table(name="Issue")
 public class Issue {
-	
+
 	@Id
 	@Column(name="IssueID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long issueId;
-	
+	//Issue class là gọi bảng từ SQL
 	@Column(name="IssueName")
 	private String issueName;
 	
@@ -109,5 +109,9 @@ public class Issue {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
-	
+	@Override
+	public String toString() {
+		return "Issue [issueId=" + issueId + ", issueName=" + issueName + ", project=" + project + ", status=" + status
+				+ ", description=" + description + ", priority=" + priority + ", employee=" + employee + "]";
+	}
 }
