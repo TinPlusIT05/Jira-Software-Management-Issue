@@ -18,9 +18,7 @@ public interface IEmployeeService {
 	public Project searchProjectDefault();
 	
 	public List<String> searchProjectNameByEmployee(String employeeName);
-	
-	public List<Project> getAllProject();
-	
+		
 	public List<Employee> getAllEmployee();
 	
 	public List<EmployeeLogWork> searchEmpByParam(ParamSearchEmployee pse);
