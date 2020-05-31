@@ -1,6 +1,5 @@
-package dxc.com.jira.soft.dashboard.dao;
+package dxc.com.jira.soft.dashboard.dao.project;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 import dxc.com.jira.soft.dashboard.model.Project;
 
 @Repository
@@ -37,25 +37,30 @@ public class ProjectDAO implements IProjectDAO{
 		System.out.println(p.toString());
 		return p;
 	}
-
 	@Override
 	public List<String> findProjectNameByEmployee(String employeeName) {
 		// TODO Auto-generated method stub
 		Session currSession = entityManager.unwrap(Session.class);
 		
 		String queryString = "SELECT p.projectName "
-				+ "FROM project p "
+				+"FROM project p "
 				+ "JOIN p.employees emps "
 				+ "WHERE emps.employeeName=:uEmployeeName";
 		Query<String> theQuery = currSession.createQuery(queryString, String.class);
 		theQuery.setParameter("uEmployeeName", employeeName);
-		List<String> row = theQuery.getResultList();
-		List<String> rs = new ArrayList<String>();
-		for(String empName : row) {
-			rs.add(empName);
+		List<String> projects = theQuery.getResultList();
+		
+		return projects;
 		}
-		System.out.println(rs.toString());
-		return rs;
-	}
 
+	@Override
+	public List<Project> getAllProject() {
+		Session currentSession = entityManager.unwrap(Session.class);
+		
+		String queryString = "FROM project ";
+		Query<Project> theQuery = currentSession.createQuery(queryString, Project.class);
+		List<Project> projects = theQuery.getResultList();
+		
+		return projects;
+	}
 }

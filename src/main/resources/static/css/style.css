@@ -1,0 +1,92 @@
+.main-content {
+	min-height: 500px;
+	max-width: 700px;
+	margin-top: 70px;
+}
+
+.list {
+	max-width: 1000px;
+}
+
+.form {
+	max-width: 450px;
+}
+
+.row {
+	margin-top: 30px;
+}
+
+.table th, td {
+   text-align: center;   
+}
+
+.datalist {
+	height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.timesheet-logwork h5.label-table{
+	width: 100%;
+}
+.not-logwork-content {
+	max-width: 500px;
+}
+
+h5.label-table {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    margin-bottom: 3px;
+    width: 500px;
+}
+
+h5.label-not-logwork{
+    background-color: black;
+    color: white;
+    width: 300px;
+    padding: 10px;
+    margin-bottom: 3px;
+}
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab li {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab li:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab li.active {
+  background-color: #5cb85c;
+  color : white;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}

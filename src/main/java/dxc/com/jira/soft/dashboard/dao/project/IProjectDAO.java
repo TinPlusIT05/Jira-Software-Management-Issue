@@ -1,4 +1,4 @@
-package dxc.com.jira.soft.dashboard.dao;
+package dxc.com.jira.soft.dashboard.dao.project;
 
 import java.util.List;
 
@@ -11,5 +11,8 @@ import dxc.com.jira.soft.dashboard.model.Project;
 public interface IProjectDAO {
 	
 	public Project getProjectDefault();
+	
 	public List<String> findProjectNameByEmployee(String employeeName);
+	
+	public List<Project> getAllProject();
 }

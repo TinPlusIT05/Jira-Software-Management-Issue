@@ -1,0 +1,49 @@
+
+<div class="tabcontent active" id="logwork-tag" th:fragment="logwork-tag">
+	<div class="timesheet-logwork">
+		<th:block th:if="${#lists.isEmpty(employeeLogWork)}">
+				<h5 class="label-table">No employee timesheet logwork</h3>
+			</th:block>
+	
+			<th:block th:unless="${#lists.isEmpty(employeeLogWork)}">
+					<h5 class="label-table">Timesheet Logwork</h5>
+					<table id="employee-logwork-table" class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>Employee</th>
+								<th th:each="dayRange : ${dateBetweenRanges}" th:text="${dayRange}"></th>
+							<tr>
+						</thead>
+						<tbody>
+								<tr th:each="mapEntry : ${mapBetweenDayTimeEmp}">
+									<td th:text="${mapEntry.key}"></td>
+									<td th:each="time : ${mapEntry.value}" th:text=${time}></td>
+								</tr>
+						</tbody>
+					</table>
+		</th:block>
+	</div>
+
+	<div class="not-logwork-content">
+		<th:block th:if="${#lists.isEmpty(employeeNotLogWork)}">
+			<h5 class="label-table">No employee not logwork</h3>
+		</th:block>
+		<th:block th:unless="${#lists.isEmpty(employeeNotLogWork)}">
+				<h5 class="label-table">Who did not logwork on Done tasks?</h5>
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>Employee</th>
+							<th>Total Tasks</th>
+						<tr>
+					</thead>
+					<tbody>
+							<tr th:each="employee : ${employeeNotLogWork}">
+								<td th:text="${employee.employeeName}"></td>
+								<td th:text="${employee.totalNotLogWork}"></td>
+							</tr>
+					</tbody>
+				</table>
+		</th:block>
+	</div>
+</div>

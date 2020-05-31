@@ -50,6 +50,13 @@ public class ParamSearchEmployee {
 
 	public void setEmployeeName(String employeeName) {
 		this.employeeName = employeeName;
+	}
+
+	@Override
+	public String toString() {
+		return "ParamSearchEmployee [dateFrom=" + dateFrom + ", dateTo=" + dateTo + ", projectName=" + projectName
+				+ ", employeeName=" + employeeName + "]";
 	}	
+	
 	
 }

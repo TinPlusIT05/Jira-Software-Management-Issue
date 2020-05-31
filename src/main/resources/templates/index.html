@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>  
+<body>
+
+	<nav th:replace="layout :: header"></nav>
+
+	<div class="container main-content list">
+		<div class="row">
+			<a th:href="@{xxx}" class="btn btn-success">Load Data</a>
+			<form id="form-input-para" class="form-inline pull-right" action="#"
+				th:action="@{search}" method="GET" onsubmit="setVal()">
+				<div class="form-group">
+					<input id="dateFrom" class="form-control" type="text" placeholder="Input date from..." name="dateFrom" th:value="${dateBetweenRanges[0]}">
+					
+					<input id="dateTo" class="form-control" type="text" placeholder="Input date to..." name="dateTo" th:value="${dateBetweenRanges[dateBetweenRanges.size() - 1]}">
+					
+					<input list="projectsByEmp" name="projectName" id="projectName" class="datalist" placeholder="Input project name..." th:value="${firstProject.projectName}"/> 
+						<datalist id="projectsByEmp">
+							<select id="selectProjects">
+								<option th:value="${firstProject.projectName}"> 
+								</option>
+							</select>
+						</datalist>
+					
+					<input list="allEmployees" name="employeeName" id="employeeName" class="datalist" placeholder="Input employee name..." />
+						<datalist id="allEmployees">
+							<select>
+							<option th:each="employee : ${allEmployees}" th:value=" ${employee.employeeName}">
+							</option>
+							</select>
+						</datalist>
+				</div>
+				<button type="submit" class="btn btn-primary">Search</button>
+			</form>
+		</div>
+			
+		<!-- nav tabs -->
+		<div class="row">
+			<ul class="nav nav-tabs tab" id="timesheet-logwork-tab">
+				<li class="tablinks active" onclick="openTab(event, 'logwork-tag')">Logwork</li>
+				<li  class="tablinks" onclick="openTab(event, 'issues-tag')">Issues</li>
+			</ul>
+			<div class="tab-content">
+				<div th:replace="logwork-tag :: logwork-tag"></div>
+				<div th:replace="issues-tag :: issues-tag"></div>
+			</div>
+		</div>
+
+	</div>
+	<footer th:replace="layout :: footer"></footer>
+	
+
+	<script type="text/javascript">
+	var myForm = document.getElementById('form-input-para');
+
+	myForm.addEventListener('submit', function () {
+	    var allInputs = myForm.getElementsByTagName('input');
+
+	    for (var i = 0; i < allInputs.length; i++) {
+	        var input = allInputs[i];
+
+	        if (input.name && !input.value) {
+	            input.name = '';
+	        }
+	    }
+	});
+	</script>
+	<script type="text/javascript">
+		function openTab(evt, cityName) {
+			  var i, tabcontent, tablinks;
+			  tabcontent = document.getElementsByClassName("tabcontent");
+			  for (i = 0; i < tabcontent.length; i++) {
+			    tabcontent[i].style.display = "none";
+			  }
+			  tablinks = document.getElementsByClassName("tablinks");
+			  for (i = 0; i < tablinks.length; i++) {
+			    tablinks[i].className = tablinks[i].className.replace(" active", "");
+			  }
+			  document.getElementById(cityName).style.display = "block";
+			  evt.currentTarget.className += " active";
+			}
+	</script>
+	
+	<script>
+		/* set config datepicker content */
+		$(document).ready(function(){
+			var dateFrom_input=$('input[name="dateFrom"]'); //our date input has the name "date"
+			var dateTo_input=$('input[name="dateTo"]');
+			var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+			dateFrom_input.datepicker({
+				format: 'mm/dd/yyyy',
+				container: container,
+				todayHighlight: true,
+				autoclose: true,
+			})
+
+			dateTo_input.datepicker({
+				format: 'mm/dd/yyyy',
+				container: container,
+				todayHighlight: true,
+				autoclose: true,
+			})
+		})
+	</script>
+	
+	<script>
+		/* set css table content */
+		$(document).ready(function(){
+			$('#employee-logwork-table td').each(function(){
+		        var num = parseFloat($(this).text());
+		        if (num > 0 && num < 8)
+		        	$(this).css('background-color','Yellow');
+		        else if (num == 0.0)
+		            $(this).css('background-color','Red');
+		        else if (num == 8)
+		        	$(this).css('background-color','Green');
+		        else if (num > 8)
+		        	$(this).css('background-color','Blue');
+		    });
+		});
+	</script>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+		    $("#employeeName").change(function() {
+		    	var employeeName = $(this).val();
+				var json = {
+						"employeeName" : employeeName
+				}
+				
+		        $.ajax({
+		            url : "/loadProjects",
+		            type : "POST",
+		            contentType : "application/json",
+		            data : JSON.stringify(json),
+		            dataType : 'json',
+		            cache : false,
+		            timeout : 600000,
+		            success : function(data) {
+		            	console.log("SUCCESS : ", data);
+		            	$("#selectProjects").empty();
+		            	$("#projectName").val("");
+		                var html = '';
+		                var len = data.length;
+		                for (var i = 0; i < len; i++) {
+		                if(i == 0)
+		                	$("#projectName").val(data[i])
+		                	
+		                 html += '<option value="' + data[i]+ '">'
+		                   + data[i] + '</option>';
+		                }
+		                html += '</option>';
+		                $('#selectProjects').html(html);
+		                
+		               },
+		               error : function(e) {
+		                   alert(e);
+	                  }
+	                 });
+	               });
+	              });
+	</script>
+	
+	<script type="text/javascript">
+		function setVal(){
+
+			var employeeName = document.getElementById('employeeName').value;
+			var projectName = document.getElementById('projectName').value;
+
+			localStorage.setItem("user_selected_employeeName", employeeName); 
+			localStorage.setItem("user_selected_projectName", projectName);
+	    }
+	    
+	    document.getElementById('employeeName').value = localStorage.getItem("user_selected_employeeName");
+	    document.getElementById('projectName').value = localStorage.getItem("user_selected_projectName"); 
+	</script>
+	
+</body>
+</html>
