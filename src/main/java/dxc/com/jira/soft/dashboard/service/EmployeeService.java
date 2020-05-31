@@ -42,11 +42,6 @@ public class EmployeeService implements IEmployeeService {
 	}
 	
 	@Override
-	public List<Project> getAllProject(){
-		return iprojectRepo.getAllProject();
-	}
-	
-	@Override
 	public List<String> searchProjectNameByEmployee(String employeeName) {
 		// TODO Auto-generated method stub
 		return iprojectRepo.findProjectNameByEmployee(employeeName);
