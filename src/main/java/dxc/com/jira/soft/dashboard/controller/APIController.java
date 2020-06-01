@@ -18,8 +18,17 @@ public class APIController {
 	@GetMapping("/getvalue")
 	@ResponseBody
 	public String GetIssue(@RequestParam String priority , @RequestParam String issueName) {
+		
 		int  i = iisueService.getValueIssueComplete(priority, issueName);
-		System.out.println("aaaaaaaaaaaaaaaa"+ i);
+		System.out.println("length "+ i);
+		return ""+i;
+	}
+	@GetMapping("/getvalue-in")
+	@ResponseBody
+	public String GetIssueIn(@RequestParam String priority , @RequestParam String issueName) {
+		
+		int  i = iisueService.getValueIssueInComplete(priority, issueName);
+		System.out.println("length "+ i);
 		return ""+i;
 	}
 

@@ -16,4 +16,14 @@ public interface IIsueService {
 	public List<IssueData> getIssueComplete();
 	
 	public List<IssueData> getIssueInComplete();
+	
+	int getValueIssueComplete(String priority,String issueName);
+	int getValueIssueInComplete(String priority,String issueName);
+	
+	//get catalog for Complete and InComplete
+	public List<IssueData> getIssueCategory();
+	public List<IssueData> getIssueCategoryIn();
+	
+	//get category issueName for 2 data table
+	List<IssueData> getIssueNameCategory();
 }

@@ -26,78 +26,72 @@
                         <li class="nav-item">
                             <a class="nav-link disabled" th:href="@{/issue/issue-type}">Issue Type</a>
                         </li>
-                    </ul>
-                     <form class="form-inline my-2 my-lg-0" action="#" th:action="@{/issue/issue-type}" method="get">
-                        <button class="btn btn-primary" type="button" disabled>
+                    </ul> 
+               </div>
+               
+                <button class="btn btn-load btn-primary" type="button" onlick="loadTrang()">
  							 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
- 										 Loading...
-						</button>	
-                    </form>
-                </div>
+ 										 Loading Data
+				</button>
+                
+                  	
             </nav>
         </div>
 
-        <!--Message status
-            <div class="row mt-4">
-            <div th:if="${successMessage}" class="col-12 alert alert-success alert-dismissible fade show" role="alert">
-                <span th:text="${successMessage}"></span>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-            </div>
-            -->
+  
 		<div class="table-name">
-      <--  <th:block th:if="${#lists.isEmpty(dataComplete)}">
+        <th:block th:if="${#lists.isEmpty(dataComplete)}">
             <h5>No Data</h5>
         </th:block>
 		
         <th:block th:unless="${#lists.isEmpty(dataComplete)}">
             <div class="table-responsive">
                 <h5>Complete Issues with Issue Type and Priority </h5>
-                <table class="table table-bordered table-hover ">
+                <table class="table table-bordered table-hover" id="our_table"> <!-- cái id này trùng bên js -->
                     <thead class="thead-light">
                        <tr>
                        		<th> Priority</th>
                        		
-                       		<th th:each ="value,iterStat : ${dataComplete}" th:text="${value.getNameIssue()}" th:attr="data-namei=${value.getNameIssue()}" class="nameissue"> </th>
+                       		<th th:each ="value,iterStat : ${dataIssueNameCategory}" th:text="${value.getNameIssue()}" th:attr="data-namei=${value.getNameIssue()}" class="nameissue"> </th>
                             <th> Total </th>
                        </tr>
                     </thead>
                     <tbody>
                        	<tr th:each ="category,iterStat : ${dataIssueCategory}" >
-                            <td class="namepriority"  th:attr="data-namep=${category.getNamePriority()}"   th:text="${category.getNamePriority()}"></td>
-                           	<td class="valuei"></td> <!--  xuwr lis choox nafy hoiw kho  -->
+                            <td class="namepriority"  th:attr="data-namep=${category.getNamePriority()}" th:text="${category.getNamePriority()}"></td>
+                           	<td th:each ="value,iterStat : ${dataIssueNameCategory}" class="valuei"></td> 
                            	<td class="total" th:text="${category.getTotal()}">  </td>
                        	</tr>
                     </tbody>
-                </table>
-                <br>
-                
-               <!-- 
-                    <h5>Incomplete Issues with Issue Type and Priority </h5>
-  					 <table class="table table-bordered table-hover">
+                </table>   
+            </div>
+             <br>
+            <div class="table-responsive">
+                <h5>Complete Issues with Issue Type and Priority </h5>
+                <table class="table table-bordered table-hover" id="our_table2">
                     <thead class="thead-light">
                        <tr>
                        		<th> Priority</th>
                        		
-                       		<th th:each ="value,iterStat : ${dataInComplete}" th:each="${issue.getIssueName()}" > </th>
+                       		<th th:each ="value,iterStat : ${dataIssueNameCategory}" th:text="${value.getNameIssue()}" th:attr="data-namei=${value.getNameIssue()}" class="nameissue"> </th>
                             <th> Total </th>
                        </tr>
                     </thead>
                     <tbody>
-                       	<tr th:each ="category,iterStat : ${dataIssueCategory}" >
-                            <td  th:text="${category.getNamePriority()}"></td>
-                           	
+                       	<tr th:each ="category,iterStat : ${dataListInCategory}" >
+                            <td class="namepriority"  th:attr="data-namep=${category.getNamePriority()}" th:text="${category.getNamePriority()}"></td>
+                           	<td th:each ="value,iterStat : ${dataIssueNameCategory}" class="valuei"></td> 
+                           	<td class="total" th:text="${category.getTotal()}">  </td>
                        	</tr>
                     </tbody>
-                </table>-->
-                 
-            </div>
+                </table>              
+        	</div>
+        	<br>
         </th:block>
     	
     	</div>
     </div>
-    </div>
+    
     <!--/.container-->  
 
     <footer th:replace="layout-dxc :: footer"></footer>

@@ -16,7 +16,7 @@ public class IssueService implements IIssueDAO {
 	@Autowired
 	private IssueDAO iisueRepo;
 	
-	
+	@Override
 	public List<Issue> getIssueDefault()
 	{
 		return iisueRepo.getIssueDefault();
@@ -31,16 +31,41 @@ public class IssueService implements IIssueDAO {
 	public List<IssueData> getIssueComplete() {
 		return iisueRepo.getIssueComplete();
 	}
-	
-
+	@Override
+	public List<IssueData> getIssueInComplete() {
+		
+		return iisueRepo.getIssueInComplete();
+	}
+	@Override
 	public List<IssueData> getIssueCategory() {
 		
 		return iisueRepo.getIssueCategory();
 	}
+	
+	public List<IssueData> getIssueCategoryIn() {
+		
+		return iisueRepo.getIssueCategoryIn();
+	}
 
 	@Override
 	public int getValueIssueComplete(String priority, String issueName) {
-		// TODO Auto-generated method stub
+		
 		return iisueRepo.getValueIssueComplete(priority, issueName);
 	}
+
+	@Override
+	public List<IssueData> getIssueNameCategory() {
+		
+		return iisueRepo.getIssueNameCategory();
+	}
+
+	@Override
+	public int getValueIssueInComplete(String priority, String issueName) {
+		
+		return iisueRepo.getValueIssueInComplete(priority, issueName);
+	}
+
+	
+
+	
 }

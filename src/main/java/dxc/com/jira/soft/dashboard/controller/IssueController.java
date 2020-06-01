@@ -33,7 +33,6 @@ public class IssueController {
 			if(StringUtils.isEmpty(issueId)) {
 				return "redirect:/issue";
 			}
-//			redirect.addFlashAttribute("successMessage", "Search ID 'issueId' successfully!");
 			model.addAttribute("dataIssue", iisueService.findIssueId(issueId));
 			
 			return "list-issue";
@@ -43,17 +42,22 @@ public class IssueController {
 		public String searchIssueIncomplete(Model model) {
 			List<IssueData> listComplete = iisueService.getIssueComplete();
 			List<IssueData> listCategory = iisueService.getIssueCategory();
-//			List<IssueData> listInComplete = iisueService.getIssueInComplete();
 			
-			//System.out.println("Object......................." + listComplete);
+			List<IssueData> listInComplete = iisueService.getIssueInComplete();
+			List<IssueData> listInCategory = iisueService.getIssueCategoryIn();
 			
-			//View: Table Completed Issue
+			List<IssueData> listNameCategory= iisueService.getIssueNameCategory();
+			//show Complete Table
 			model.addAttribute("dataComplete", listComplete);
 			model.addAttribute("dataIssueCategory", listCategory);
-
-			//View: Table InCompleted Issue
-//			model.addAttribute("dataInComplete", listInComplete);
-//			model.addAttribute("dataIssueCategory", listCategory);
+			model.addAttribute("dataIssueNameCategory",listNameCategory);
+			
+			//show In-Complete Table
+			model.addAttribute("dataINComplete", listComplete);
+			model.addAttribute("dataIssueINCategory", listCategory);
+			model.addAttribute("dataIssueNameCategory",listNameCategory);
+			model.addAttribute("dataListInCategory",listInCategory);
+			
 
 			return "list-issue-type";
 		}

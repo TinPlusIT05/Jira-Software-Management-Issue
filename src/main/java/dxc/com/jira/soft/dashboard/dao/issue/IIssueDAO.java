@@ -18,14 +18,17 @@ public interface IIssueDAO {
 	public List<IssueData> getIssueComplete();
 	
 	//get issue InComplete
-//	public List<IssueData> getIssueInComplete();
+	public List<IssueData> getIssueInComplete();
 	
-	//get value issue Complete
+	//get value issue Complete and Incomplete
 	int getValueIssueComplete(String priority,String issueName);
+	int getValueIssueInComplete(String priority,String issueName);
 	
-	//get catalog
+	//get catalog for Complete and InComplete
 	public List<IssueData> getIssueCategory();
+	public List<IssueData> getIssueCategoryIn();
 	
-	
-	
+	//get category issueName for 2 data table
+	List<IssueData> getIssueNameCategory();
+
 }
