@@ -39,7 +39,6 @@ public class EmployeeController {
 			Model model) {
 		ParamSearchEmployee pse = new ParamSearchEmployee(dateFrom, dateTo, projectName, employeeName);
 		model.addAttribute("allEmployees", iemployeeService.getAllEmployee());
-//		model.addAttribute("allProjects", iemployeeService.getAllProject());
 		model.addAttribute("firstProject", iemployeeService.searchProjectDefault());
 		model.addAttribute("employeeLogWork", iemployeeService.searchEmpByParam(pse));
 		model.addAttribute("employeeNotLogWork", iemployeeService.searchEmpNotLogWork(pse));
@@ -47,4 +46,6 @@ public class EmployeeController {
 		model.addAttribute("mapBetweenDayTimeEmp", iemployeeService.getListTimeEmployee(pse));
 		return "index";
 	}
+	
+	
 }
