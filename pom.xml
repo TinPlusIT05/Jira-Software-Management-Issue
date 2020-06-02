@@ -8,6 +8,7 @@
 		<version>2.3.0.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	
 	<groupId>dxc.com.jira</groupId>
 	<artifactId>Jira-Software-Management-Issue</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -17,7 +18,39 @@
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
+	
+	<!--JRJC uses a few dependencies published on Atlassian maven repository,configured to use this repository  -->
+    <repositories>
+       <repository>
+         <id>atlassian-public</id>
+         <url>https://m2proxy.atlassian.com/repository/public</url>
+         <snapshots>
+           <enabled>true</enabled>
+           <updatePolicy>daily</updatePolicy>
+           <checksumPolicy>warn</checksumPolicy>
+         </snapshots>
+         <releases>
+           <enabled>true</enabled>
+           <checksumPolicy>warn</checksumPolicy>
+         </releases>
+       </repository>
+     </repositories>
 
+     <pluginRepositories>
+       <pluginRepository>
+         <id>atlassian-public</id>
+         <url>https://m2proxy.atlassian.com/repository/public</url>
+         <releases>
+           <enabled>true</enabled>
+           <checksumPolicy>warn</checksumPolicy>
+         </releases>
+         <snapshots>
+           <checksumPolicy>warn</checksumPolicy>
+         </snapshots>
+       </pluginRepository>
+     </pluginRepositories>
+     <!--======================================================================= -->
+     
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -38,6 +71,16 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>3.3.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>1.12.4</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -47,6 +90,46 @@
 					<artifactId>junit-vintage-engine</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+		
+		<dependency>
+		  <groupId>joda-time</groupId>
+		  <artifactId>joda-time</artifactId>
+		  <version>2.9.4</version>
+		</dependency>
+		
+		<!--=================JIRA REST CLIENT API LIBRARY =========================  -->
+		<!-- https://mvnrepository.com/artifact/com.atlassian.jira/jira-rest-java-client- -->
+		
+		<dependency>
+		    <groupId>com.atlassian.jira</groupId>
+		    <artifactId>jira-rest-java-client-parent</artifactId>
+		    <version>5.2.0</version>
+		    <type>pom</type>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.atlassian.jira</groupId>
+		    <artifactId>jira-rest-java-client-api</artifactId>
+		    <version>5.2.0</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.atlassian.jira</groupId>
+		    <artifactId>jira-rest-java-client-core</artifactId>
+		    <version>5.2.0</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.atlassian.fugue/fugue -->
+		<!-- com.atlassian.fugue version 2.6.1 mapping with jira-rest-java-client-api version 4.0.0  -->
+		<dependency>
+		    <groupId>com.atlassian.fugue</groupId>
+		    <artifactId>fugue</artifactId>
+		    <version>2.6.1</version>
 		</dependency>
 	</dependencies>
 
