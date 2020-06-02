@@ -3,19 +3,23 @@ package dxc.com.jira.soft.dashboard.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dxc.com.jira.soft.dashboard.dao.employee.ParamSearchEmployee;
+import dxc.com.jira.soft.dashboard.model.Issue;
 import dxc.com.jira.soft.dashboard.service.IEmployeeService;
+import dxc.com.jira.soft.dashboard.service.IssueService;
 
 @Controller
 public class EmployeeController {
 	
 	@Autowired
 	private IEmployeeService iemployeeService;
-	
+
+	//Widget 1+2: 
 	@GetMapping("/project")
 	public String searchProject(Model model) {
 		model.addAttribute("resultProject", iemployeeService.searchProjectDefault());
@@ -39,4 +43,5 @@ public class EmployeeController {
 		model.addAttribute("employeeNotLogWork", iemployeeService.searchEmpNotLogWork(pse));
 		return "index";
 	}
+
 }
