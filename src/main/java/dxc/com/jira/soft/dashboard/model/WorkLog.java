@@ -20,7 +20,7 @@ public class WorkLog {
 	
 	@ManyToOne
 	@JoinColumn(name="IssueID")
-	private IssueModel issue;
+	private Issue issue;
 	
 	@Column(name="Time")
 	private Float time;
@@ -32,7 +32,7 @@ public class WorkLog {
 		super();
 	}
 
-	public WorkLog(IssueModel issue, Float time, String date) {
+	public WorkLog(Issue issue, Float time, String date) {
 		super();
 		this.issue = issue;
 		this.time = time;
@@ -47,11 +47,11 @@ public class WorkLog {
 		this.worklogId = worklogId;
 	}
 
-	public IssueModel getIssue() {
+	public Issue getIssue() {
 		return issue;
 	}
 
-	public void setIssue(IssueModel issue) {
+	public void setIssue(Issue issue) {
 		this.issue = issue;
 	}
 

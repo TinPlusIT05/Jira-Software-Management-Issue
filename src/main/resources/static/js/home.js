@@ -71,8 +71,12 @@ $(document).ready(function(){
 				}
 			});
 
+
 		})
 
 	}
+
+
+
 	
 });
