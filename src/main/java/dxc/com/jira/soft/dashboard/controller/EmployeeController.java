@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dxc.com.jira.soft.dashboard.dao.employee.ParamSearchEmployee;
-import dxc.com.jira.soft.dashboard.model.Issue;
+import dxc.com.jira.soft.dashboard.model.IssueModel;
 import dxc.com.jira.soft.dashboard.service.IEmployeeService;
 import dxc.com.jira.soft.dashboard.service.IssueService;
 

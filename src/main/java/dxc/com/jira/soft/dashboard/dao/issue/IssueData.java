@@ -23,10 +23,7 @@ public class IssueData {
 	public void setTotal(float total) {
 		this.total = total;
 	}
-//	@Override
-//	public String toString() {
-//		return "IssueData [namePriority=" + namePriority + ", nameIssue=" + nameIssue + ", total=" + total + "]";
-//	}
+
 	
 	
 }
