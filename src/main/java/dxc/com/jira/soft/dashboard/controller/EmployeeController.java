@@ -18,7 +18,6 @@ import dxc.com.jira.soft.dashboard.model.Employee;
 import dxc.com.jira.soft.dashboard.service.IEmployeeService;
 
 @Controller
-@RequestMapping("/")
 public class EmployeeController {
 	
 	@Autowired
@@ -45,6 +44,12 @@ public class EmployeeController {
 		model.addAttribute("dateBetweenRanges", iemployeeService.getDaysBetweenDates(pse));
 		model.addAttribute("mapBetweenDayTimeEmp", iemployeeService.getListTimeEmployee(pse));
 		return "index";
+		
+	}
+	
+	@GetMapping("loadData")
+	public void loadData() {
+		iemployeeService.updateEmployeeDatabase();
 	}
 	
 	

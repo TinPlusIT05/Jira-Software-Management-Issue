@@ -32,4 +32,6 @@ public interface IEmployeeService {
 	public Map<String, List<String>> getListTimeEmployee(ParamSearchEmployee pse);
 	
 	public String getTimeDayByDay(String employeeName, String date, List<EmployeeLogWork> empLogworks);
+	
+	public void updateEmployeeDatabase();
 }

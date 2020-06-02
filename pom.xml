@@ -8,6 +8,7 @@
 		<version>2.3.0.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	
 	<groupId>dxc.com.jira</groupId>
 	<artifactId>Jira-Software-Management-Issue</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -103,16 +104,24 @@
 		
 		<!--=================JIRA REST CLIENT API LIBRARY =========================  -->
 		<!-- https://mvnrepository.com/artifact/com.atlassian.jira/jira-rest-java-client- -->
+		
+		<dependency>
+		    <groupId>com.atlassian.jira</groupId>
+		    <artifactId>jira-rest-java-client-parent</artifactId>
+		    <version>5.2.0</version>
+		    <type>pom</type>
+		</dependency>
+		
 		<dependency>
 		    <groupId>com.atlassian.jira</groupId>
 		    <artifactId>jira-rest-java-client-api</artifactId>
-		    <version>4.0.0</version>
+		    <version>5.2.0</version>
 		</dependency>
 		
 		<dependency>
 		    <groupId>com.atlassian.jira</groupId>
 		    <artifactId>jira-rest-java-client-core</artifactId>
-		    <version>4.0.0</version>
+		    <version>5.2.0</version>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/com.atlassian.fugue/fugue -->

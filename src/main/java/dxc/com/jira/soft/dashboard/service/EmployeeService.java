@@ -127,5 +127,11 @@ public class EmployeeService implements IEmployeeService {
 		}
 		return mapEmpTimeDayByDay;
 	}
-	
+
+	@Override
+	public void updateEmployeeDatabase() {
+		// TODO Auto-generated method stub
+		iemployeeRepo.updateEmployeeDB();
+	}
+
 }
