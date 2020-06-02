@@ -18,7 +18,7 @@ public class Issue {
 	@Column(name="IssueID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long issueId;
-	//Issue class là gọi bảng từ SQL
+	
 	@Column(name="IssueName")
 	private String issueName;
 	
