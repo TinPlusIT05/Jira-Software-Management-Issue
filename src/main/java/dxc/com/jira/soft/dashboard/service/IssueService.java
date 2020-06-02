@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import dxc.com.jira.soft.dashboard.dao.issue.IIssueDAO;
 import dxc.com.jira.soft.dashboard.dao.issue.IssueDAO;
 import dxc.com.jira.soft.dashboard.dao.issue.IssueData;
-import dxc.com.jira.soft.dashboard.model.Issue;
+import dxc.com.jira.soft.dashboard.model.IssueModel;
 
 @Service
 public class IssueService implements IIssueDAO {
@@ -17,13 +17,13 @@ public class IssueService implements IIssueDAO {
 	private IssueDAO iisueRepo;
 	
 	@Override
-	public List<Issue> getIssueDefault()
+	public List<IssueModel> getIssueDefault()
 	{
 		return iisueRepo.getIssueDefault();
 	}
 	
 	@Override
-	public List<Issue> findIssueId(Long issueId){
+	public List<IssueModel> findIssueId(Long issueId){
 		return iisueRepo.findIssueId(issueId);
 	}
 	

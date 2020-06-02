@@ -2,7 +2,7 @@ package dxc.com.jira.soft.dashboard.dao.issue;
 
 import org.springframework.stereotype.Repository;
 
-import dxc.com.jira.soft.dashboard.model.Issue;
+import dxc.com.jira.soft.dashboard.model.IssueModel;
 import dxc.com.jira.soft.dashboard.model.Project;
 
 import org.hibernate.Session;
@@ -28,28 +28,28 @@ public class IssueDAO implements IIssueDAO {
 	}
 
 	@Override
-	public List<Issue> getIssueDefault() {
+	public List<IssueModel> getIssueDefault() {
 		Session currentSession = entityManager.unwrap(Session.class);
 		String queryString = "FROM issue";
 
-		List<Issue> issue = currentSession.createQuery(queryString,Issue.class).getResultList();
-		List<Issue> arrIssue = new ArrayList<Issue>();
-		for(Issue i : issue) {
+		List<IssueModel> issue = currentSession.createQuery(queryString,IssueModel.class).getResultList();
+		List<IssueModel> arrIssue = new ArrayList<IssueModel>();
+		for(IssueModel i : issue) {
 			arrIssue.add(i);	
 		}
 		System.out.println(arrIssue.toString());
 		return arrIssue;
 	}
 	@Override
-	public List<Issue> findIssueId(Long issueId){
+	public List<IssueModel> findIssueId(Long issueId){
 		Session currSession = entityManager.unwrap(Session.class);
 		String queryString = "FROM issue i "
 				+ "WHERE i.issueId = :uIssueId";
 
-		List<Issue> issueList = currSession.createQuery(queryString, Issue.class).setParameter("uIssueId", issueId).getResultList();
+		List<IssueModel> issueList = currSession.createQuery(queryString, IssueModel.class).setParameter("uIssueId", issueId).getResultList();
 
-		List<Issue> arrIssue = new ArrayList<Issue>();
-		for(Issue i : issueList ) {
+		List<IssueModel> arrIssue = new ArrayList<IssueModel>();
+		for(IssueModel i : issueList ) {
 			arrIssue.add(i);
 		}
 		System.out.println(arrIssue.toString());

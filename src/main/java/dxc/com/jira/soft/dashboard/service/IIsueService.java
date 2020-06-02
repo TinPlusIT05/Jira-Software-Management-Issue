@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import dxc.com.jira.soft.dashboard.dao.issue.IssueData;
-import dxc.com.jira.soft.dashboard.model.Issue;
+import dxc.com.jira.soft.dashboard.model.IssueModel;
 
 @Service
 public interface IIsueService {
-	public List<Issue> getIssueDefault();
+	public List<IssueModel> getIssueDefault();
 	
-	public List<Issue> findIssueId(Long issueId);
+	public List<IssueModel> findIssueId(Long issueId);
 
 	public List<IssueData> getIssueComplete();
 	

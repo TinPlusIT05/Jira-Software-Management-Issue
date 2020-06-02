@@ -4,15 +4,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import dxc.com.jira.soft.dashboard.model.Issue;
+import dxc.com.jira.soft.dashboard.model.IssueModel;
 
 @Repository
 public interface IIssueDAO {
 	//get all data from Issue
-	public List<Issue> getIssueDefault();
+	public List<IssueModel> getIssueDefault();
 
 	//get a issue by id
-	public List<Issue> findIssueId(Long issueId);
+	public List<IssueModel> findIssueId(Long issueId);
 	
 	//get issue Complete
 	public List<IssueData> getIssueComplete();
