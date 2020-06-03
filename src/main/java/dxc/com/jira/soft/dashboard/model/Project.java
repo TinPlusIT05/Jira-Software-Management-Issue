@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,7 +26,7 @@ public class Project {
 	@Column(name="Description")
 	private String description;
 	
-	@ManyToMany(mappedBy = "projects")
+	@ManyToMany(fetch = FetchType.LAZY,mappedBy = "projects")
 	private List<Employee> employees;
 	
 	public Project() {

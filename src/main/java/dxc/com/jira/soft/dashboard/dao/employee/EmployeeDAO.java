@@ -10,6 +10,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import dxc.com.jira.soft.dashboard.model.Employee;
 import dxc.com.jira.soft.dashboard.util.DateFomatUtils;
 
 @Repository
@@ -25,7 +26,19 @@ public class EmployeeDAO implements IEmployeeDAO{
 	}
 	
 	@Override
-	public List<EmployeeSearchStory> findEmployeeByParam(ParamSearchEmployee pse) {
+	public List<Employee> getAllEmplopyee() {
+		// TODO Auto-generated method stub
+		Session currentSession = entityManager.unwrap(Session.class);
+		
+		String queryString = "FROM employee ";
+		Query<Employee> theQuery = currentSession.createQuery(queryString, Employee.class);
+		List<Employee> employees = theQuery.getResultList();
+		
+		return employees;
+	}
+	
+	@Override
+	public List<EmployeeLogWork> findEmployeeLogwork(ParamSearchEmployee pse) {
 		// TODO Auto-generated method stub
 		Session currentSession = entityManager.unwrap(Session.class);
 		
@@ -47,28 +60,26 @@ public class EmployeeDAO implements IEmployeeDAO{
 		if(pse.getDateFrom() == null && pse.getDateTo() == null) {
 			theQuery.setParameter("uDateFrom", dateCurrentWeek.get(0));
 			theQuery.setParameter("uDateTo", dateCurrentWeek.get(1));
-			System.out.println(dateCurrentWeek.get(0));
 		}
 		else if (pse.getDateFrom() != null && pse.getDateTo() != null){
 			theQuery.setParameter("uDateFrom", pse.getDateFrom());
 			theQuery.setParameter("uDateTo", pse.getDateTo());
 		}
+		theQuery.setParameter("uEmployeeName", pse.getEmployeeName());
 		
-			theQuery.setParameter("uEmployeeName", pse.getEmployeeName());
-		
-			theQuery.setParameter("uProjectName", pse.getProjectName());
+		theQuery.setParameter("uProjectName", pse.getProjectName());
 		
 		// save value  hibernate query to EmployeeSearchStory 
-		List<EmployeeSearchStory> rs = new ArrayList<EmployeeSearchStory>();
+		List<EmployeeLogWork> rs = new ArrayList<EmployeeLogWork>();
 		List<Object[]> rows = theQuery.getResultList();
 		for(Object[] row : rows) {
-			EmployeeSearchStory ess = new EmployeeSearchStory();
-			ess.setEmployeeName(row[0].toString());
+			EmployeeLogWork emplw = new EmployeeLogWork();
+			emplw.setEmployeeName(row[0].toString());
 			// parse format dateWorkLog	
-			ess.setDateWorkLog(DateFomatUtils.dateFomat(row[1].toString()));
-			ess.setTimeWorkLog(Float.parseFloat(row[2].toString()));
-			System.out.println(ess.toString());
-			rs.add(ess);
+			emplw.setDateWorkLog(DateFomatUtils.dateFomat(row[1].toString()));
+			emplw.setTimeWorkLog(Float.parseFloat(row[2].toString()));
+			rs.add(emplw);
+			System.out.println(rs.toString());
 		}
 		return rs;
 	}
@@ -86,24 +97,24 @@ public class EmployeeDAO implements IEmployeeDAO{
 				+ "AND (:uEmployeeName IS NULL OR e.employeeName=:uEmployeeName) "
 				+ "AND (:uProjectName IS NULL OR i.project.projectName=:uProjectName) "
 				+ "GROUP BY e.employeeName";
-		
+	
 		Query<Object[]> theQuery = currentSession.createQuery(queryString, Object[].class);
 		
-			theQuery.setParameter("uEmployeeName", pse.getEmployeeName());
+		theQuery.setParameter("uEmployeeName", pse.getEmployeeName());
+	
+		theQuery.setParameter("uProjectName", pse.getProjectName());
 		
-			theQuery.setParameter("uProjectName", pse.getProjectName());
-			
-			// save value  hibernate query to EmployeeSearchStory 
-			List<EmployeeNotLogWork> rs = new ArrayList<EmployeeNotLogWork>();
-			List<Object[]> rows = theQuery.getResultList();
-			for(Object[] row : rows) {
-				EmployeeNotLogWork eNotLogWork = new EmployeeNotLogWork();
-				eNotLogWork.setEmployeeName(row[0].toString());
-				eNotLogWork.setTotalNotLogWork(Integer.parseInt(row[1].toString()));
-				System.out.println(eNotLogWork.toString());
-				rs.add(eNotLogWork);
-			}
-			return rs;
+		// save value  hibernate query to EmployeeSearchStory 
+		List<EmployeeNotLogWork> rs = new ArrayList<EmployeeNotLogWork>();
+		List<Object[]> rows = theQuery.getResultList();
+		for(Object[] row : rows) {
+			EmployeeNotLogWork eNotLogWork = new EmployeeNotLogWork();
+			eNotLogWork.setEmployeeName(row[0].toString());
+			eNotLogWork.setTotalNotLogWork(Integer.parseInt(row[1].toString()));
+			rs.add(eNotLogWork);
+			System.out.println(rs.toString());
+		}
+		return rs;
 	}
 	
 }

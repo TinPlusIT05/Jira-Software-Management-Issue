@@ -1,6 +1,6 @@
 package dxc.com.jira.soft.dashboard.dao.employee;
 
-public class EmployeeSearchStory {
+public class EmployeeLogWork {
 	
 	private String employeeName;
 	private String dateWorkLog;

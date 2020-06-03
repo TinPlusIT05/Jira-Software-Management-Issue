@@ -41,15 +41,14 @@ public class DateFomatUtils {
 	    rs.add(monday.format(formatter));
 
 	    // Go forward to get Sunday
-	    LocalDate friday = today;
-	    while (friday.getDayOfWeek() != DayOfWeek.FRIDAY)
+	    LocalDate sunday = today;
+	    while (sunday.getDayOfWeek() != DayOfWeek.SUNDAY)
 	    {
-	    	friday = friday.plusDays(1);
+	    	sunday = sunday.plusDays(1);
 	    }
 	    
-	    rs.add(friday.format(formatter));
+	    rs.add(sunday.format(formatter));
 	    
 	    return rs;
 	}
-
 }

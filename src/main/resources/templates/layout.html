@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--The viewport is the user's visible area of a web page  varies with the device-->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <title>Jira Management</title>
+    <!-- Custom style css -->
+    <!-- th:href URLs allow you to create links to other servers such as http or https -->
+    <link 
+        rel="stylesheet"
+        href="../static/css/style.css" th:href="@{/css/style.css}"/>
+    <!-- Bootstrap -->
+    <link 
+        rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script 
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<!-- Include Date Range Picker -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+</head>
+<body>
+    <nav th:fragment="header"
+        class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span> 
+                    <span class="icon-bar"></span> 
+                    <span class="icon-bar"></span> 
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" th:href="@{/employee}">Jira Dashboard Management</a>
+            </div>
+        </div>
+    </nav>
+
+    <h1>Main content</h1>
+
+    <footer th:fragment="footer" class="container"> 
+       Copyright &copy; 2020 Team 4 Fresher Java DXC VietNam
+    </footer>
+</body>
+</html>

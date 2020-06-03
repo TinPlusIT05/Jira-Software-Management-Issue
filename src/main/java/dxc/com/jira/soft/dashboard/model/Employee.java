@@ -38,6 +38,14 @@ public class Employee {
 	public Employee() {
 	}
 	
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
+	}
+
 	public Employee(String employeeName, String role) {
 		this.employeeName = employeeName;
 		this.role = role;
