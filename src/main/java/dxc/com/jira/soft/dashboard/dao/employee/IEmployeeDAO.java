@@ -13,4 +13,8 @@ public interface IEmployeeDAO {
 	public List<Employee> getAllEmplopyee();
 	public List<EmployeeLogWork> findEmployeeLogwork(ParamSearchEmployee pse);
 	public List<EmployeeNotLogWork> findEmployeeNotLogWork(ParamSearchEmployee pse);
+	
+//	Update list employee from Jira Server to database
+	public void updateEmployeeDB();
+	
 }

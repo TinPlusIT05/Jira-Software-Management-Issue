@@ -44,6 +44,12 @@ public class EmployeeController {
 		model.addAttribute("dateBetweenRanges", iemployeeService.getDaysBetweenDates(pse));
 		model.addAttribute("mapBetweenDayTimeEmp", iemployeeService.getListTimeEmployee(pse));
 		return "index";
+		
+	}
+	
+	@GetMapping("loadData")
+	public void loadData() {
+		iemployeeService.updateEmployeeDatabase();
 	}
 	
 	@GetMapping("loadData")
