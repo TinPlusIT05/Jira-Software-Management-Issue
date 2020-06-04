@@ -118,17 +118,14 @@ public class EmployeeDAO implements IEmployeeDAO{
 	}
 
 	@Override
-	public void updateEmployeeDB() {
+	public void save(Employee e) {
 		// TODO Auto-generated method stub
 		// get current hibernate session
-		
-//		List<Employee> resultListClient
-		
 		Session currentSession = entityManager.unwrap(Session.class);
 
 		// create the user ... finally LOL
-		
-//		currentSession.saveOrUpdate(employee);
+		currentSession.save(e);
 	}
+
 	
 }

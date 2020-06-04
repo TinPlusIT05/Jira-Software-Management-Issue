@@ -131,7 +131,14 @@
 		    <artifactId>fugue</artifactId>
 		    <version>2.6.2</version>
 		</dependency>
-	</dependencies>
+		
+		<dependency>
+			<groupId>io.atlassian.fugue</groupId>
+			<artifactId>fugue</artifactId>
+			<version>4.7.2</version>
+			<scope>provided</scope>
+			</dependency>
+		</dependencies>
 
 	<build>
 		<plugins>

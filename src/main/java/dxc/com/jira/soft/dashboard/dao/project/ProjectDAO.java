@@ -63,4 +63,15 @@ public class ProjectDAO implements IProjectDAO{
 		
 		return projects;
 	}
+
+	@Override
+	public void save(Project p) {
+		// TODO Auto-generated method stub
+		// get current hibernate session
+		Session currentSession = entityManager.unwrap(Session.class);
+
+		// create the user ... finally LOL
+		currentSession.save(p);
+		
+	}
 }

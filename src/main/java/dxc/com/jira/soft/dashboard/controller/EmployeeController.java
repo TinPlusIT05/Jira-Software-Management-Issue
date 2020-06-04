@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import dxc.com.jira.soft.dashboard.dao.employee.ParamSearchEmployee;
 import dxc.com.jira.soft.dashboard.model.Employee;
@@ -48,13 +49,12 @@ public class EmployeeController {
 	}
 	
 	@GetMapping("loadData")
-	public void loadData() {
-		iemployeeService.updateEmployeeDatabase();
+	public String loadData(RedirectAttributes redirect){
+		iemployeeService.saveEmployee();
+		iemployeeService.saveProject();
+		redirect.addFlashAttribute("success", "Update data successfully!");
+		return "alert-load-data";
 	}
 	
-	@GetMapping("loadData")
-	public void loadData() {
-		iemployeeService.updateEmployeeDatabase();
-	}
 	
 }

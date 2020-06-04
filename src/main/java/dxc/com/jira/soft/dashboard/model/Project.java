@@ -16,15 +16,12 @@ import javax.persistence.Table;
 public class Project {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ProjectID")
 	private long projectId;
 	
 	@Column(name="ProjectName")
 	private String projectName;
-	
-	@Column(name="Description")
-	private String description;
 	
 	@ManyToMany(fetch = FetchType.LAZY,mappedBy = "projects")
 	private List<Employee> employees;
@@ -33,16 +30,13 @@ public class Project {
 		
 	}
 	
-	public Project(String projectName, String description) {
+	public Project(String projectName) {
 		this.projectName = projectName;
-		this.description = description;
 	}
 	
-	public Project(long projectId, String projectName, String description, List<Employee> employees) {
+	public Project(String projectName, List<Employee> employees) {
 		super();
-		this.projectId = projectId;
 		this.projectName = projectName;
-		this.description = description;
 		this.employees = employees;
 	}
 
@@ -61,17 +55,6 @@ public class Project {
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
 	}
-	
-	
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
-	
 
 	public List<Employee> getEmployees() {
 		return employees;
@@ -81,11 +64,6 @@ public class Project {
 		this.employees = employees;
 	}
 
-	@Override
-	public String toString() {
-		return "Project [projectId=" + projectId + ", projectName=" + projectName + ", description=" + description
-				+ ", employees=" + employees + "]";
-	}
 	
 	
 	

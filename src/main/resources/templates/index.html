@@ -6,6 +6,7 @@
 	<nav th:replace="layout :: header"></nav>
 
 	<div class="container main-content list">
+		<div th:replace="alert-load-data :: update-data"></div>
 		<div class="row">
 			<a th:href="@{loadData}" class="btn btn-success">Load Data</a>
 			<form id="form-input-para" class="form-inline pull-right" action="#"

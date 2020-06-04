@@ -33,5 +33,7 @@ public interface IEmployeeService {
 	
 	public String getTimeDayByDay(String employeeName, String date, List<EmployeeLogWork> empLogworks);
 	
-	public void updateEmployeeDatabase();
+	public void saveEmployee();
+	
+	public void saveProject();
 }

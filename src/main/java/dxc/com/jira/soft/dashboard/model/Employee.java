@@ -1,5 +1,4 @@
 package dxc.com.jira.soft.dashboard.model;
-
 import java.util.List;
 
 import javax.persistence.Column;
@@ -25,9 +24,6 @@ public class Employee {
 	@Column(name="EmployeeName", nullable = false)
 	private String employeeName;
 	
-	@Column(name="Role", nullable = false)
-	private String role;
-	
 	@ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "ProjectEmployee", 
@@ -37,7 +33,7 @@ public class Employee {
 	
 	public Employee() {
 	}
-	
+
 	public List<Project> getProjects() {
 		return projects;
 	}
@@ -46,9 +42,8 @@ public class Employee {
 		this.projects = projects;
 	}
 
-	public Employee(String employeeName, String role) {
+	public Employee(String employeeName) {
 		this.employeeName = employeeName;
-		this.role = role;
 	}
 	
 	public long getEmployeeId() {
@@ -66,21 +61,5 @@ public class Employee {
 	public void setEmployeeName(String employeeName) {
 		this.employeeName = employeeName;
 	}
-	
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-	@Override
-	public String toString() {
-		return "Employee [employeeId=" + employeeId + ", employeeName=" + employeeName + ", role=" + role + "]";
-	}
-	
-	
-	
 	
 }

@@ -15,4 +15,6 @@ public interface IProjectDAO {
 	public List<String> findProjectNameByEmployee(String employeeName);
 	
 	public List<Project> getAllProject();
+	
+	public void save(Project p);
 }
