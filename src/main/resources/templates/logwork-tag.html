@@ -1,4 +1,4 @@
-<div style="overflow-x:scroll;" class="tabcontent active" id="logwork-tag" th:fragment="logwork-tag">
+<div style="overflow-x:scroll" class="tabcontent active" id="logwork-tag" th:fragment="logwork-tag">
 	<div class="timesheet-logwork">
 		<th:block th:if="${#lists.isEmpty(employeeLogWork)}">
 				<h5 class="label-table">No employee timesheet logwork</h3>
@@ -39,7 +39,10 @@
 					<tbody>
 							<tr th:each="employee : ${employeeNotLogWork}">
 								<td th:text="${employee.employeeName}"></td>
-								<td th:text="${employee.totalNotLogWork}"></td>
+								<td>
+									<a th:text="${employee.totalNotLogWork}"
+									   href="http://localhost:8080/issues/?jql=status in (Done) and timespent is EMPTY" target="_blank"/>
+								</td>
 							</tr>
 					</tbody>
 				</table>

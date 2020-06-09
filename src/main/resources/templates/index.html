@@ -6,7 +6,6 @@
 	<nav th:replace="layout :: header"></nav>
 
 	<div class="container main-content list">
-		<div th:replace="alert-load-data :: update-data"></div>
 		<div class="row">
 			<a th:href="@{loadData}" class="btn btn-success">Load Data</a>
 			<form id="form-input-para" class="form-inline pull-right" action="#"
@@ -162,7 +161,28 @@
 	               });
 	              });
 	</script>
-	
+	<script>
+	$(document).ready(function() {
+	    $("#dateTo").change(function() {
+	    	
+	    	var from = $("#dateFrom").val();
+	    	var to = $("#dateTo").val();
+	    	
+	    	var arrFromDate = from.split("/");
+	    	var dateFrom = new Date(arrFromDate[2],arrFromDate[0] - 1, arrFromDate[1]);
+	    	var arrToDate = to.split("/");
+	    	var dateTo = new Date(arrToDate[2],arrToDate[0] - 1, arrToDate[1]);
+/* 			if(to == "") {                            
+	    		return true;
+	    	} 
+	    	 */
+	    	if(dateFrom > dateTo){
+	    		alert("Date to must be greater !")
+	    	  	$(this).val("");
+	    	}
+	    });
+	})
+	</script>
 	<script type="text/javascript">
 		function setVal(){
 

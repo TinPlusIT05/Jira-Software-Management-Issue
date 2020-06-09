@@ -49,12 +49,10 @@ public class EmployeeController {
 	}
 	
 	@GetMapping("loadData")
-	public String loadData(RedirectAttributes redirect){
+	public String loadData(){
 		iemployeeService.saveEmployee();
 		iemployeeService.saveProject();
-		redirect.addFlashAttribute("success", "Update data successfully!");
-		return "alert-load-data";
+		return "redirect:/";
 	}
-	
 	
 }
